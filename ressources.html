@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ressources - Club de Santé École Primaire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Fredoka', sans-serif; }
+        .health-gradient { background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 50%, #ffd3b6 100%); }
+        .resource-card { transition: all 0.3s ease; }
+        .resource-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .floating-book { animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
+        .tip-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .recipe-card { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+    </style>
+</head>
+<body class="health-gradient min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-sm shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-heart text-white text-xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-800">Club de Santé</h1>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-green-600 transition-colors">Accueil</a>
+                    <a href="programme.html" class="text-gray-700 hover:text-green-600 transition-colors">Programme</a>
+                    <a href="jeux.html" class="text-gray-700 hover:text-green-600 transition-colors">Jeux</a>
+                    <a href="ressources.html" class="text-green-600 font-semibold hover:text-green-800 transition-colors">Ressources</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="py-16 px-4 text-center">
+        <div class="container mx-auto">
+            <div class="floating-book mb-8">
+                <div class="w-24 h-24 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto">
+                    <i class="fas fa-book-open text-white text-4xl"></i>
+                </div>
+            </div>
+            <h1 class="text-5xl md:text-6xl font-bold text-gray-800 mb-6">
+                Ressources pour
+                <span class="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
+                    Parents
+                </span>
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Des conseils, astuces et outils pour accompagner vos enfants vers une vie plus saine !
+            </p>
+        </div>
+    </section>
+
+    <!-- Quick Tips -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Conseils Express</h2>
+                <p class="text-lg text-gray-600">Des astuces simples pour une famille en bonne santé</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="tip-card text-white rounded-3xl p-8 shadow-xl">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-apple-alt text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Alimentation</h3>
+                    <p class="text-lg mb-4">Offrez 5 fruits et légumes par jour à vos enfants</p>
+                    <ul class="space-y-2 text-sm">
+                        <li>• Variez les couleurs et les textures</li>
+                        <li>• Impliquez les enfants dans la préparation</li>
+                        <li>• Préférez les snacks sains</li>
+                    </ul>
+                </div>
+
+                <div class="resource-card bg-gradient-to-br from-green-400 to-blue-500 text-white rounded-3xl p-8 shadow-xl">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-running text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Activité Physique</h3>
+                    <p class="text-lg mb-4">60 minutes d'activité par jour recommandées</p>
+                    <ul class="space-y-2 text-sm">
+                        <li>• Marchez à l'école quand possible</li>
+                        <li>• Organisez des sorties actives</li>
+                        <li>• Dansez et bougez ensemble</li>
+                    </ul>
+                </div>
+
+                <div class="resource-card bg-gradient-to-br from-purple-400 to-pink-500 text-white rounded-3xl p-8 shadow-xl">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-bed text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Sommeil</h3>
+                    <p class="text-lg mb-4">Un bon sommeil est essentiel pour la croissance</p>
+                    <ul class="space-y-2 text-sm">
+                        <li>• 9-11 heures par nuit pour les 6-12 ans</li>
+                        <li>• Rituel du coucher régulier</li>
+                        <li>• Pas d'écrans avant le dodo</li>
+                    </ul>
+                </div>
+
+                <div class="resource-card bg-gradient-to-br from-teal-400 to-cyan-500 text-white rounded-3xl p-8 shadow-xl">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Santé Mentale</h3>
+                    <p class="text-lg mb-4">Prenez soin du bien-être émotionnel</p>
+                    <ul class="space-y-2 text-sm">
+                        <li>• Écoutez activement vos enfants</li>
+                        <li>• Encouragez l'expression des émotions</li>
+                        <li>• Créez un environnement sécurisant</li>
+                    </ul>
+                </div>
+
+                <div class="resource-card bg-gradient-to-br from-indigo-400 to-purple-500 text-white rounded-3xl p-8 shadow-xl">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-tint text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Hydratation</h3>
+                    <p class="text-lg mb-4">L'eau est essentielle pour le corps</p>
+                    <ul class="space-y-2 text-sm">
+                        <li>• 6-8 verres d'eau par jour</li>
+                        <li>• Une gourde à l'école</li>
+                        <li>• Limitez les boissons sucrées</li>
+                    </ul>
+                </div>
+
+                <div class="resource-card bg-gradient-to-br from-red-400 to-pink-500 text-white rounded-3xl p-8 shadow-xl">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Hygiène</h3>
+                    <p class="text-lg mb-4">De bonnes habitudes pour rester en bonne santé</p>
+                    <ul class="space-y-2 text-sm">
+                        <li>• Se laver les mains régulièrement</li>
+                        <li>• Brossage des dents 2x/jour</li>
+                        <li>• Douche quotidienne</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Healthy Recipes -->
+    <section class="py-16 px-4 bg-white/50">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Recettes Santé</h2>
+                <p class="text-lg text-gray-600">Des recettes simples et nutritives à faire avec vos enfants</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="recipe-card text-white rounded-3xl p-8 shadow-xl">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-blender text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Smoothie Arc-en-ciel</h3>
+                    <div class="mb-4">
+                        <h4 class="font-semibold mb-2">Ingrédients:</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• 1 banane</li>
+                            <li>• 5 fraises</li>
+                            <li>• 1 yaourt nature</li>
+                            <li>• 1 cuillère de miel</li>
+                            <li>• Quelques glaçons</li>
+                        </ul>
+                    </div>
+                    <p class="text-sm">Mixez tous les ingrédients et dégustez ce smoothie vitaminé !</p>
+                </div>
+
+                <div class="resource-card bg-gradient-to-br from-yellow-400 to-orange-500 text-white rounded-3xl p-8 shadow-xl">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-cookie-bite text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Cookies Santé</h3>
+                    <div class="mb-4">
+                        <h4 class="font-semibold mb-2">Ingrédients:</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• 2 bananes mûres écrasées</li>
+                            <li>• 1 tasse de flocons d'avoine</li>
+                            <li>• 1/2 tasse de raisins secs</li>
+                            <li>• 1 cuillère de cannelle</li>
+                            <li>• Un peu de vanille</li>
+                        </ul>
+                    </div>
+                    <p class="text-sm">Formez des cookies et cuire 15 min à 180°C. Sans sucre ajouté !</p>
+                </div>
+
+                <div class="resource-card bg-gradient-to-br from-green-400 to-teal-500 text-white rounded-3xl p-8 shadow-xl">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-salad text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Salade Colorée</h3>
+                    <div class="mb-4">
+                        <h4 class="font-semibold mb-2">Ingrédients:</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• Laitue fraîche</li>
+                            <li>• Tomates cerises</li>
+                            <li>• Concombre</li>
+                            <li>• Maïs</li>
+                            <li>• Vinaigrette légère</li>
+                        </ul>
+                    </div>
+                    <p class="text-sm">Laissez les enfants composer leur propre salade !</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Educational Materials -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Matériel Éducatif</h2>
+                <p class="text-lg text-gray-600">Des outils pour apprendre ensemble</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white rounded-3xl p-8 shadow-xl">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Suivi de Santé</h3>
+                    <p class="text-gray-600 mb-6">
+                        Un tableau pour suivre les progrès de votre enfant dans ses habitudes de santé.
+                    </p>
+                    <button onclick="downloadTracker()" class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-full font-semibold hover:from-blue-600 hover:to-purple-600 transition-all">
+                        <i class="fas fa-download mr-2"></i>
+                        Télécharger le tableau
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 shadow-xl">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-calendar-check text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Planning Familial</h3>
+                    <p class="text-gray-600 mb-6">
+                        Organisez vos activités santé en famille avec notre calendrier hebdomadaire.
+                    </p>
+                    <button onclick="downloadCalendar()" class="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-full font-semibold hover:from-green-600 hover:to-emerald-600 transition-all">
+                        <i class="fas fa-download mr-2"></i>
+                        Télécharger le calendrier
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Contacts -->
+    <section class="py-16 px-4 bg-white/50">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Besoin d'Aide ?</h2>
+                <p class="text-lg text-gray-600">Des ressources importantes pour les situations urgentes</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="bg-red-50 border-2 border-red-200 rounded-3xl p-8 text-center">
+                    <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-phone text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-red-800 mb-4">Urgences</h3>
+                    <p class="text-red-700 mb-4">En cas d'urgence médicale</p>
+                    <p class="text-2xl font-bold text-red-800">112</p>
+                </div>
+
+                <div class="bg-blue-50 border-2 border-blue-200 rounded-3xl p-8 text-center">
+                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-user-md text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-4">Médecin</h3>
+                    <p class="text-blue-700 mb-4">Pour des conseils médicaux</p>
+                    <p class="text-lg font-semibold text-blue-800">Contactez votre médecin traitant</p>
+                </div>
+
+                <div class="bg-green-50 border-2 border-green-200 rounded-3xl p-8 text-center">
+                    <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-school text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-green-800 mb-4">École</h3>
+                    <p class="text-green-700 mb-4">Pour toute question concernant votre enfant</p>
+                    <p class="text-lg font-semibold text-green-800">Contactez l'école</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto">
+            <div class="bg-gradient-to-r from-purple-400 to-pink-500 rounded-3xl p-12 text-white text-center max-w-4xl mx-auto">
+                <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-envelope text-4xl"></i>
+                </div>
+                <h2 class="text-4xl font-bold mb-6">Restez Informés</h2>
+                <p class="text-xl mb-8">Recevez nos conseils santé et nos nouvelles activités directement dans votre boîte mail !</p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+                    <input type="email" placeholder="Votre email" class="flex-1 px-6 py-3 rounded-full text-gray-800 font-semibold">
+                    <button class="bg-white text-purple-600 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-all">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        S'abonner
+                    </button>
+                </div>
+                
+                <p class="text-sm mt-4 opacity-80">Aucun spam, promis ! Vous pouvez vous désabonner à tout moment.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 px-4">
+        <div class="container mx-auto text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+                    <i class="fas fa-heart text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold">Club de Santé - École Primaire</h3>
+            </div>
+            <p class="text-gray-400 mb-4">© 2024 Club de Santé. Tous droits réservés.</p>
+            <p class="text-gray-400 text-sm">Créé avec ❤️ pour la santé et le bien-être des enfants</p>
+        </div>
+    </footer>
+
+    <script>
+        function downloadTracker() {
+            // Simulate download
+            alert('Téléchargement du tableau de suivi santé ! (Dans une vraie application, cela téléchargerait un PDF)');
+        }
+
+        function downloadCalendar() {
+            // Simulate download
+            alert('Téléchargement du calendrier familial ! (Dans une vraie application, cela téléchargerait un PDF)');
+        }
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.resource-card, .tip-card, .recipe-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+<script>
+    document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+            e.preventDefault();
+            window.parent.postMessage('go-next', '*');
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            window.parent.postMessage('go-prev', '*');
+        }
+    });
+</script>
+</body>
+</html>
