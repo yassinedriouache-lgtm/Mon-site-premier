@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme - Club de Santé École Primaire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/3.0.3/plotly.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Fredoka', sans-serif; }
+        .health-gradient { background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 50%, #ffd3b6 100%); }
+        .activity-card { transition: all 0.3s ease; }
+        .activity-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .day-header { background: linear-gradient(45deg, #4CAF50, #8BC34A); }
+        .time-slot { background: linear-gradient(45deg, #2196F3, #21CBF3); }
+        .floating-icon { animation: float 2s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+    </style>
+</head>
+<body class="health-gradient min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-sm shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-heart text-white text-xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-800">Club de Santé</h1>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-green-600 transition-colors">Accueil</a>
+                    <a href="programme.html" class="text-green-600 font-semibold hover:text-green-800 transition-colors">Programme</a>
+                    <a href="jeux.html" class="text-gray-700 hover:text-green-600 transition-colors">Jeux</a>
+                    <a href="ressources.html" class="text-gray-700 hover:text-green-600 transition-colors">Ressources</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="py-16 px-4 text-center">
+        <div class="container mx-auto">
+            <div class="floating-icon mb-8">
+                <div class="w-24 h-24 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto">
+                    <i class="fas fa-calendar-alt text-white text-4xl"></i>
+                </div>
+            </div>
+            <h1 class="text-5xl md:text-6xl font-bold text-gray-800 mb-6">
+                Notre Programme
+                <span class="bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">
+                    d'Activités
+                </span>
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Découvre notre planning hebdomadaire rempli d'activités amusantes pour rester en bonne santé !
+            </p>
+        </div>
+    </section>
+
+    <!-- Weekly Schedule -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Planning Hebdomadaire</h2>
+                <p class="text-lg text-gray-600">Chaque jour est une nouvelle aventure santé !</p>
+            </div>
+
+            <div class="grid gap-6 max-w-6xl mx-auto">
+                <!-- Lundi -->
+                <div class="activity-card bg-white rounded-3xl p-8 shadow-xl">
+                    <div class="flex items-center mb-6">
+                        <div class="day-header w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl mr-6">
+                            LUN
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">Lundi - Journée Bien-être</h3>
+                            <p class="text-gray-600">Commençons la semaine du bon pied !</p>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-green-50 rounded-2xl p-4">
+                            <div class="time-slot text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-2">
+                                9h00-10h00
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">Yoga Kids</h4>
+                            <p class="text-gray-600 text-sm">Des postures rigolotes pour se détendre</p>
+                        </div>
+                        <div class="bg-blue-50 rounded-2xl p-4">
+                            <div class="time-slot text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-2">
+                                10h30-11h30
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">Atelier Smoothies</h4>
+                            <p class="text-gray-600 text-sm">Prépare des boissons super saines</p>
+                        </div>
+                        <div class="bg-purple-50 rounded-2xl p-4">
+                            <div class="time-slot text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-2">
+                                14h00-15h00
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">Méditation</h4>
+                            <p class="text-gray-600 text-sm">Apprends à écouter ton corps</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mardi -->
+                <div class="activity-card bg-white rounded-3xl p-8 shadow-xl">
+                    <div class="flex items-center mb-6">
+                        <div class="day-header w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl mr-6">
+                            MAR
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">Mardi - Activité Physique</h3>
+                            <p class="text-gray-600">Bougeons et amusons-nous !</p>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-orange-50 rounded-2xl p-4">
+                            <div class="time-slot text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-2">
+                                9h00-10h00
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">Course Obstacle</h4>
+                            <p class="text-gray-600 text-sm">Un parcours amusant dans la cour</p>
+                        </div>
+                        <div class="bg-red-50 rounded-2xl p-4">
+                            <div class="time-slot text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-2">
+                                10h30-11h30
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">Danse Fitness</h4>
+                            <p class="text-gray-600 text-sm">Des chorégraphies énergiques</p>
+                        </div>
+                        <div class="bg-green-50 rounded-2xl p-4">
+                            <div class="time-slot text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-2">
+                                14h00-15h00
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">Jeux Coopératifs</h4>
+                            <p class="text-gray-600 text-sm">Travaillons ensemble en équipe</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mercredi -->
+                <div class="activity-card bg-white rounded-3xl p-8 shadow-xl">
+                    <div class="flex items-center mb-6">
+                        <div class="day-header w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl mr-6">
+                            MER
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">Mercredi - Jardinage & Nature</h3>
+                            <p class="text-gray-600">Connectons-nous avec la nature !</p>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-green-50 rounded-2xl p-4">
+                            <div class="time-slot text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-2">
+                                9h00-10h00
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">Plantation</h4>
+                            <p class="text-gray-600 text-sm">Fais pousser tes propres légumes</p>
+                        </div>
+                        <div class="bg-yellow-50 rounded-2xl p-4">
+                            <div class="time-slot text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-2">
+                                10h30-11h30
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">Atelier Compost</h4>
+                            <p class="text-gray-600 text-sm">Apprends le recyclage naturel</p>
+                        </div>
+                        <div class="bg-brown-50 rounded-2xl p-4">
+                            <div class="time-slot text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-2">
+                                14h00-15h00
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">Cuisine du Jardin</h4>
+                            <p class="text-gray-600 text-sm">Déguste les fruits de ton travail</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jeudi -->
+                <div class="activity-card bg-white rounded-3xl p-8 shadow-xl">
+                    <div class="flex items-center mb-6">
+                        <div class="day-header w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl mr-6">
+                            JEU
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">Jeudi - Science & Découverte</h3>
+                            <p class="text-gray-600">Explorons les mystères du corps !</p>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-blue-50 rounded-2xl p-4">
+                            <div class="time-slot text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-2">
+                                9h00-10h00
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">Expériences Corps</h4>
+                            <p class="text-gray-600 text-sm">Comment fonctionne notre corps ?</p>
+                        </div>
+                        <div class="bg-purple-50 rounded-2xl p-4">
+                            <div class="time-slot text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-2">
+                                10h30-11h30
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">Atelier Hygiène</h4>
+                            <p class="text-gray-600 text-sm">Les bons gestes pour rester propre</p>
+                        </div>
+                        <div class="bg-teal-50 rounded-2xl p-4">
+                            <div class="time-slot text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-2">
+                                14h00-15h00
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">Quiz Santé</h4>
+                            <p class="text-gray-600 text-sm">Teste tes connaissances</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vendredi -->
+                <div class="activity-card bg-white rounded-3xl p-8 shadow-xl">
+                    <div class="flex items-center mb-6">
+                        <div class="day-header w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl mr-6">
+                            VEN
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">Vendredi - Fun & Partage</h3>
+                            <p class="text-gray-600">Terminons la semaine en beauté !</p>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-pink-50 rounded-2xl p-4">
+                            <div class="time-slot text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-2">
+                                9h00-10h00
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">Art Thérapie</h4>
+                            <p class="text-gray-600 text-sm">Exprime ta créativité</p>
+                        </div>
+                        <div class="bg-indigo-50 rounded-2xl p-4">
+                            <div class="time-slot text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-2">
+                                10h30-11h30
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">Olympiades Santé</h4>
+                            <p class="text-gray-600 text-sm">Des défis amusants en équipe</p>
+                        </div>
+                        <div class="bg-yellow-50 rounded-2xl p-4">
+                            <div class="time-slot text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-2">
+                                14h00-15h00
+                            </div>
+                            <h4 class="font-bold text-gray-800 mb-2">Cérémonie Réussite</h4>
+                            <p class="text-gray-600 text-sm">Célébrons nos progrès !</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Monthly Challenges -->
+    <section class="py-16 px-4 bg-white/50">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Défis du Mois</h2>
+                <p class="text-lg text-gray-600">Relevez nos défis santé et gagnez des badges !</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-apple-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">5 Fruits & Légumes</h3>
+                    <p class="text-gray-600 text-sm mb-4">Mange 5 fruits et légumes chaque jour</p>
+                    <div class="bg-gray-200 rounded-full h-3 mb-2">
+                        <div class="bg-green-500 h-3 rounded-full" style="width: 75%"></div>
+                    </div>
+                    <p class="text-sm text-gray-600">15/20 jours</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-tint text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Hydratation</h3>
+                    <p class="text-gray-600 text-sm mb-4">Bois 6 verres d'eau par jour</p>
+                    <div class="bg-gray-200 rounded-full h-3 mb-2">
+                        <div class="bg-blue-500 h-3 rounded-full" style="width: 60%"></div>
+                    </div>
+                    <p class="text-sm text-gray-600">12/20 jours</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-running text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">30 min Activité</h3>
+                    <p class="text-gray-600 text-sm mb-4">Bouge au moins 30 minutes par jour</p>
+                    <div class="bg-gray-200 rounded-full h-3 mb-2">
+                        <div class="bg-purple-500 h-3 rounded-full" style="width: 85%"></div>
+                    </div>
+                    <p class="text-sm text-gray-600">17/20 jours</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bed text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Bonne Nuit</h3>
+                    <p class="text-gray-600 text-sm mb-4">Dors 9 heures chaque nuit</p>
+                    <div class="bg-gray-200 rounded-full h-3 mb-2">
+                        <div class="bg-yellow-500 h-3 rounded-full" style="width: 70%"></div>
+                    </div>
+                    <p class="text-sm text-gray-600">14/20 jours</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activity Stats -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Nos Statistiques</h2>
+                <p class="text-lg text-gray-600">Voici nos résultats du mois !</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div id="activityChart" class="bg-white rounded-3xl p-8 shadow-xl"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 px-4">
+        <div class="container mx-auto text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+                    <i class="fas fa-heart text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold">Club de Santé - École Primaire</h3>
+            </div>
+            <p class="text-gray-400 mb-4">© 2024 Club de Santé. Tous droits réservés.</p>
+            <p class="text-gray-400 text-sm">Créé avec ❤️ pour la santé et le bien-être des enfants</p>
+        </div>
+    </footer>
+
+    <script>
+        // Activity Chart
+        const activityData = [
+            {
+                x: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'],
+                y: [45, 52, 38, 41, 48],
+                type: 'bar',
+                name: 'Participation (enfants)',
+                marker: {
+                    color: ['#4CAF50', '#2196F3', '#FF9800', '#9C27B0', '#F44336'],
+                    line: {
+                        color: 'rgba(0,0,0,0.2)',
+                        width: 1
+                    }
+                }
+            }
+        ];
+
+        const layout = {
+            title: {
+                text: 'Participation aux Activités cette Semaine',
+                font: { size: 24, color: '#374151', family: 'Fredoka' }
+            },
+            xaxis: {
+                title: 'Jours de la semaine',
+                titlefont: { size: 16, color: '#6B7280' },
+                tickfont: { size: 14, color: '#6B7280' }
+            },
+            yaxis: {
+                title: 'Nombre d\'enfants',
+                titlefont: { size: 16, color: '#6B7280' },
+                tickfont: { size: 14, color: '#6B7280' }
+            },
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            margin: { t: 80, r: 40, b: 80, l: 80 },
+            font: { family: 'Fredoka' }
+        };
+
+        const config = {
+            responsive: true,
+            displayModeBar: false
+        };
+
+        Plotly.newPlot('activityChart', activityData, layout, config);
+    </script>
+<script>
+    document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+            e.preventDefault();
+            window.parent.postMessage('go-next', '*');
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            window.parent.postMessage('go-prev', '*');
+        }
+    });
+</script>
+</body>
+</html>

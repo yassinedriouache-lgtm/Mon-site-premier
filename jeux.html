@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeux - Club de Santé École Primaire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Fredoka', sans-serif; }
+        .health-gradient { background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 50%, #ffd3b6 100%); }
+        .game-card { transition: all 0.3s ease; cursor: pointer; }
+        .game-card:hover { transform: translateY(-10px) rotateY(5deg); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .quiz-option { transition: all 0.3s ease; cursor: pointer; }
+        .quiz-option:hover { transform: scale(1.05); }
+        .quiz-option.correct { background: linear-gradient(45deg, #4CAF50, #8BC34A); color: white; }
+        .quiz-option.incorrect { background: linear-gradient(45deg, #F44336, #FF5722); color: white; }
+        .memory-card { transition: all 0.6s ease; cursor: pointer; }
+        .memory-card.flipped { transform: rotateY(180deg); }
+        .memory-card.matched { animation: matchPulse 0.6s ease; }
+        @keyframes matchPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .bouncing { animation: bounce 1s ease-in-out infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+    </style>
+</head>
+<body class="health-gradient min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-sm shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-heart text-white text-xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-800">Club de Santé</h1>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-green-600 transition-colors">Accueil</a>
+                    <a href="programme.html" class="text-gray-700 hover:text-green-600 transition-colors">Programme</a>
+                    <a href="jeux.html" class="text-green-600 font-semibold hover:text-green-800 transition-colors">Jeux</a>
+                    <a href="ressources.html" class="text-gray-700 hover:text-green-600 transition-colors">Ressources</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="py-16 px-4 text-center">
+        <div class="container mx-auto">
+            <div class="bouncing mb-8">
+                <div class="w-24 h-24 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full flex items-center justify-center mx-auto">
+                    <i class="fas fa-gamepad text-white text-4xl"></i>
+                </div>
+            </div>
+            <h1 class="text-5xl md:text-6xl font-bold text-gray-800 mb-6">
+                Jeux
+                <span class="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+                    Santé
+                </span>
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Apprends tout en t'amusant avec nos jeux éducatifs sur la santé !
+            </p>
+        </div>
+    </section>
+
+    <!-- Games Selection -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Choisis ton Jeu</h2>
+                <p class="text-lg text-gray-600">Clique sur un jeu pour commencer à jouer !</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Quiz Game -->
+                <div class="game-card bg-white rounded-3xl p-8 shadow-xl" onclick="startQuiz()">
+                    <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-question-circle text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Quiz Santé</h3>
+                    <p class="text-gray-600 text-center mb-6">
+                        Teste tes connaissances sur la santé avec des questions amusantes !
+                    </p>
+                    <div class="text-center">
+                        <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">
+                            <i class="fas fa-star mr-1"></i>
+                            10 Questions
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Memory Game -->
+                <div class="game-card bg-white rounded-3xl p-8 shadow-xl" onclick="startMemoryGame()">
+                    <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-brain text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Memory Aliments</h3>
+                    <p class="text-gray-600 text-center mb-6">
+                        Retrouve les paires d'aliments sains et apprends à manger équilibré !
+                    </p>
+                    <div class="text-center">
+                        <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold">
+                            <i class="fas fa-puzzle-piece mr-1"></i>
+                            12 Cartes
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Healthy Plate Game -->
+                <div class="game-card bg-white rounded-3xl p-8 shadow-xl" onclick="startPlateGame()">
+                    <div class="w-20 h-20 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-utensils text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Assiette Équilibrée</h3>
+                    <p class="text-gray-600 text-center mb-6">
+                        Compose un repas équilibré en plaçant les aliments au bon endroit !
+                    </p>
+                    <div class="text-center">
+                        <span class="bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-semibold">
+                            <i class="fas fa-apple-alt mr-1"></i>
+                            15 Aliments
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Game Modal -->
+    <div id="quizModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-gray-800">Quiz Santé</h2>
+                <button onclick="closeQuiz()" class="text-gray-500 hover:text-gray-700 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="quizContent">
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-semibold text-gray-700">Question <span id="currentQuestion">1</span> / 10</span>
+                        <span class="text-lg font-semibold text-blue-600">Score: <span id="currentScore">0</span></span>
+                    </div>
+                    <div class="bg-gray-200 rounded-full h-3 mb-6">
+                        <div id="progressBar" class="bg-blue-500 h-3 rounded-full transition-all duration-300" style="width: 10%"></div>
+                    </div>
+                </div>
+
+                <div id="questionContainer">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6" id="questionText">
+                        Combien de fruits et légumes faut-il manger par jour ?
+                    </h3>
+                    <div class="grid gap-4" id="optionsContainer">
+                        <div class="quiz-option bg-gray-100 p-4 rounded-2xl hover:bg-gray-200" onclick="selectAnswer(0)">
+                            <span class="font-semibold">A)</span> 2 portions
+                        </div>
+                        <div class="quiz-option bg-gray-100 p-4 rounded-2xl hover:bg-gray-200" onclick="selectAnswer(1)">
+                            <span class="font-semibold">B)</span> 5 portions
+                        </div>
+                        <div class="quiz-option bg-gray-100 p-4 rounded-2xl hover:bg-gray-200" onclick="selectAnswer(2)">
+                            <span class="font-semibold">C)</span> 10 portions
+                        </div>
+                        <div class="quiz-option bg-gray-100 p-4 rounded-2xl hover:bg-gray-200" onclick="selectAnswer(3)">
+                            <span class="font-semibold">D)</span> 1 portion
+                        </div>
+                    </div>
+                </div>
+
+                <div id="quizResult" class="hidden text-center">
+                    <div class="mb-6">
+                        <div class="w-24 h-24 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-trophy text-white text-4xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-2">Bravo !</h3>
+                        <p class="text-xl text-gray-600">Tu as terminé le quiz !</p>
+                    </div>
+                    <div class="bg-gradient-to-r from-green-400 to-blue-500 rounded-2xl p-6 text-white mb-6">
+                        <p class="text-2xl font-bold">Score Final: <span id="finalScore">8/10</span></p>
+                        <p class="text-lg" id="scoreMessage">Excellent travail ! Tu es un vrai champion de la santé !</p>
+                    </div>
+                    <button onclick="restartQuiz()" class="bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-3 rounded-full font-bold hover:from-pink-600 hover:to-purple-600 transition-all">
+                        Rejouer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Memory Game Modal -->
+    <div id="memoryModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-4xl w-full">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-gray-800">Memory Aliments</h2>
+                <button onclick="closeMemoryGame()" class="text-gray-500 hover:text-gray-700 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="text-center mb-6">
+                <span class="text-lg font-semibold text-gray-700">Coups: <span id="memoryMoves">0</span></span>
+                <span class="ml-8 text-lg font-semibold text-green-600">Paires trouvées: <span id="memoryPairs">0</span>/6</span>
+            </div>
+
+            <div id="memoryGrid" class="grid grid-cols-4 gap-4 max-w-2xl mx-auto">
+                <!-- Memory cards will be generated here -->
+            </div>
+
+            <div id="memoryResult" class="hidden text-center mt-8">
+                <div class="mb-6">
+                    <div class="w-24 h-24 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-star text-white text-4xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800 mb-2">Félicitations !</h3>
+                    <p class="text-xl text-gray-600">Tu as trouvé toutes les paires !</p>
+                </div>
+                <div class="bg-gradient-to-r from-green-400 to-emerald-500 rounded-2xl p-6 text-white mb-6">
+                    <p class="text-2xl font-bold">Terminé en <span id="finalMoves">12</span> coups</p>
+                    <p class="text-lg">Tu as une excellente mémoire !</p>
+                </div>
+                <button onclick="restartMemoryGame()" class="bg-gradient-to-r from-blue-500 to-green-500 text-white px-8 py-3 rounded-full font-bold hover:from-blue-600 hover:to-green-600 transition-all">
+                    Rejouer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Plate Game Modal -->
+    <div id="plateModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-gray-800">Assiette Équilibrée</h2>
+                <button onclick="closePlateGame()" class="text-gray-500 hover:text-gray-700 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="text-center mb-6">
+                <p class="text-lg text-gray-600">Glisse les aliments dans la bonne catégorie de l'assiette !</p>
+                <div class="mt-4">
+                    <span class="text-lg font-semibold text-orange-600">Score: <span id="plateScore">0</span>/15</span>
+                </div>
+            </div>
+
+            <!-- Plate sections -->
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">L'assiette équilibrée</h3>
+                    <div class="relative bg-gray-100 rounded-full w-80 h-80 mx-auto">
+                        <div id="fruitsSection" class="absolute top-4 left-1/2 transform -translate-x-1/2 w-32 h-32 bg-red-100 rounded-full border-4 border-dashed border-red-300 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-apple-alt text-red-500 text-2xl mb-2"></i>
+                                <p class="text-sm font-semibold text-red-700">Fruits</p>
+                            </div>
+                        </div>
+                        <div id="vegetablesSection" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-32 h-32 bg-green-100 rounded-full border-4 border-dashed border-green-300 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-carrot text-green-500 text-2xl mb-2"></i>
+                                <p class="text-sm font-semibold text-green-700">Légumes</p>
+                            </div>
+                        </div>
+                        <div id="proteinsSection" class="absolute top-1/2 left-4 transform -translate-y-1/2 w-32 h-32 bg-blue-100 rounded-full border-4 border-dashed border-blue-300 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-fish text-blue-500 text-2xl mb-2"></i>
+                                <p class="text-sm font-semibold text-blue-700">Protéines</p>
+                            </div>
+                        </div>
+                        <div id="carbsSection" class="absolute top-1/2 right-4 transform -translate-y-1/2 w-32 h-32 bg-yellow-100 rounded-full border-4 border-dashed border-yellow-300 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-bread-slice text-yellow-500 text-2xl mb-2"></i>
+                                <p class="text-sm font-semibold text-yellow-700">Glucides</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Aliments à placer</h3>
+                    <div id="foodItems" class="grid grid-cols-3 gap-4">
+                        <!-- Food items will be generated here -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="plateResult" class="hidden text-center">
+                <div class="mb-6">
+                    <div class="w-24 h-24 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-utensils text-white text-4xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800 mb-2">Super !</h3>
+                    <p class="text-xl text-gray-600">Tu as bien compris l'équilibre alimentaire !</p>
+                </div>
+                <div class="bg-gradient-to-r from-orange-400 to-red-500 rounded-2xl p-6 text-white mb-6">
+                    <p class="text-2xl font-bold">Score Final: <span id="finalPlateScore">13</span>/15</p>
+                    <p class="text-lg">Tu es un expert de la nutrition !</p>
+                </div>
+                <button onclick="restartPlateGame()" class="bg-gradient-to-r from-green-500 to-blue-500 text-white px-8 py-3 rounded-full font-bold hover:from-green-600 hover:to-blue-600 transition-all">
+                    Rejouer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 px-4">
+        <div class="container mx-auto text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+                    <i class="fas fa-heart text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold">Club de Santé - École Primaire</h3>
+            </div>
+            <p class="text-gray-400 mb-4">© 2024 Club de Santé. Tous droits réservés.</p>
+            <p class="text-gray-400 text-sm">Créé avec ❤️ pour la santé et le bien-être des enfants</p>
+        </div>
+    </footer>
+
+    <script>
+        // Quiz Game Data
+        const quizQuestions = [
+            {
+                question: "Combien de fruits et légumes faut-il manger par jour ?",
+                options: ["2 portions", "5 portions", "10 portions", "1 portion"],
+                correct: 1
+            },
+            {
+                question: "Quelle boisson est la meilleure pour la santé ?",
+                options: ["Coca-Cola", "Jus de fruits", "Eau", "Limonade"],
+                correct: 2
+            },
+            {
+                question: "Combien d'heures de sommeil faut-il par nuit ?",
+                options: ["4-5 heures", "6-7 heures", "8-9 heures", "10-12 heures"],
+                correct: 3
+            },
+            {
+                question: "Quel est le meilleur petit-déjeuner ?",
+                options: ["Des bonbons", "Des céréales avec du lait", "Un café", "Rien"],
+                correct: 1
+            },
+            {
+                question: "Que faut-il faire pour avoir de bonnes dents ?",
+                options: ["Manger beaucoup de sucre", "Se brosser les dents", "Ne rien faire", "Boire du soda"],
+                correct: 1
+            },
+            {
+                question: "Quel sport est bon pour la santé ?",
+                options: ["Regarder la télé", "Jouer à des jeux vidéo", "Faire du sport", "Dormir"],
+                correct: 2
+            },
+            {
+                question: "Que faut-il faire quand on est triste ?",
+                options: ["Rester seul", "En parler à un adulte", "Crier", "Faire du mal aux autres"],
+                correct: 1
+            },
+            {
+                question: "Quel est le meilleur goûter ?",
+                options: ["Un gâteau", "Un fruit", "Des chips", "Un bonbon"],
+                correct: 1
+            },
+            {
+                question: "Comment éviter de tomber malade ?",
+                options: ["Se laver les mains", "Manger des bonbons", "Ne pas dormir", "Ne pas faire de sport"],
+                correct: 0
+            },
+            {
+                question: "Que faut-il faire après avoir joué dehors ?",
+                options: ["Manger des bonbons", "Se laver les mains", "Regarder la télé", "Rien"],
+                correct: 1
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let quizScore = 0;
+        let memoryMoves = 0;
+        let memoryPairs = 0;
+        let plateScore = 0;
+
+        // Memory Game Data
+        const memoryCards = [
+            { id: 1, emoji: '🍎', name: 'Pomme' },
+            { id: 2, emoji: '🥕', name: 'Carotte' },
+            { id: 3, emoji: '🥦', name: 'Brocoli' },
+            { id: 4, emoji: '🍌', name: 'Banane' },
+            { id: 5, emoji: '🍊', name: 'Orange' },
+            { id: 6, emoji: '🥬', name: 'Laitue' }
+        ];
+
+        // Food Items Data
+        const foodItems = [
+            { name: 'Pomme', category: 'fruits', emoji: '🍎' },
+            { name: 'Carotte', category: 'vegetables', emoji: '🥕' },
+            { name: 'Pain', category: 'carbs', emoji: '🍞' },
+            { name: 'Poisson', category: 'proteins', emoji: '🐟' },
+            { name: 'Banane', category: 'fruits', emoji: '🍌' },
+            { name: 'Brocoli', category: 'vegetables', emoji: '🥦' },
+            { name: 'Riz', category: 'carbs', emoji: '🍚' },
+            { name: 'Poulet', category: 'proteins', emoji: '🐔' },
+            { name: 'Orange', category: 'fruits', emoji: '🍊' },
+            { name: 'Épinards', category: 'vegetables', emoji: '🥬' },
+            { name: 'Pâtes', category: 'carbs', emoji: '🍝' },
+            { name: 'Œuf', category: 'proteins', emoji: '🥚' },
+            { name: 'Fraise', category: 'fruits', emoji: '🍓' },
+            { name: 'Tomate', category: 'vegetables', emoji: '🍅' },
+            { name: 'Pomme de terre', category: 'carbs', emoji: '🥔' }
+        ];
+
+        // Quiz Game Functions
+        function startQuiz() {
+            document.getElementById('quizModal').classList.remove('hidden');
+            currentQuestionIndex = 0;
+            quizScore = 0;
+            showQuestion();
+        }
+
+        function closeQuiz() {
+            document.getElementById('quizModal').classList.add('hidden');
+        }
+
+        function showQuestion() {
+            const question = quizQuestions[currentQuestionIndex];
+            document.getElementById('questionText').textContent = question.question;
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            document.getElementById('currentScore').textContent = quizScore;
+            document.getElementById('progressBar').style.width = ((currentQuestionIndex + 1) / quizQuestions.length * 100) + '%';
+
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'quiz-option bg-gray-100 p-4 rounded-2xl hover:bg-gray-200';
+                optionDiv.innerHTML = `<span class="font-semibold">${String.fromCharCode(65 + index)})</span> ${option}`;
+                optionDiv.onclick = () => selectAnswer(index);
+                optionsContainer.appendChild(optionDiv);
+            });
+        }
+
+        function selectAnswer(selectedIndex) {
+            const question = quizQuestions[currentQuestionIndex];
+            const options = document.querySelectorAll('.quiz-option');
+            
+            options.forEach((option, index) => {
+                option.onclick = null;
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex && index !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            if (selectedIndex === question.correct) {
+                quizScore++;
+                document.getElementById('currentScore').textContent = quizScore;
+            }
+
+            setTimeout(() => {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < quizQuestions.length) {
+                    showQuestion();
+                } else {
+                    showQuizResult();
+                }
+            }, 1500);
+        }
+
+        function showQuizResult() {
+            document.getElementById('questionContainer').classList.add('hidden');
+            document.getElementById('quizResult').classList.remove('hidden');
+            document.getElementById('finalScore').textContent = `${quizScore}/${quizQuestions.length}`;
+            
+            let message = '';
+            if (quizScore >= 8) {
+                message = 'Excellent travail ! Tu es un vrai champion de la santé !';
+            } else if (quizScore >= 6) {
+                message = 'Très bien ! Tu connais bien les bases de la santé !';
+            } else {
+                message = 'Bien joué ! Continue à apprendre sur la santé !';
+            }
+            document.getElementById('scoreMessage').textContent = message;
+        }
+
+        function restartQuiz() {
+            document.getElementById('questionContainer').classList.remove('hidden');
+            document.getElementById('quizResult').classList.add('hidden');
+            currentQuestionIndex = 0;
+            quizScore = 0;
+            showQuestion();
+        }
+
+        // Memory Game Functions
+        function startMemoryGame() {
+            document.getElementById('memoryModal').classList.remove('hidden');
+            memoryMoves = 0;
+            memoryPairs = 0;
+            document.getElementById('memoryMoves').textContent = memoryMoves;
+            document.getElementById('memoryPairs').textContent = memoryPairs;
+            document.getElementById('memoryResult').classList.add('hidden');
+            createMemoryGrid();
+        }
+
+        function closeMemoryGame() {
+            document.getElementById('memoryModal').classList.add('hidden');
+        }
+
+        function createMemoryGrid() {
+            const grid = document.getElementById('memoryGrid');
+            grid.innerHTML = '';
+            
+            const cards = [...memoryCards, ...memoryCards];
+            cards.sort(() => Math.random() - 0.5);
+
+            cards.forEach((card, index) => {
+                const cardDiv = document.createElement('div');
+                cardDiv.className = 'memory-card bg-gradient-to-br from-green-400 to-blue-500 rounded-2xl h-24 flex items-center justify-center cursor-pointer';
+                cardDiv.innerHTML = `
+                    <div class="card-front text-white text-3xl">?</div>
+                    <div class="card-back hidden text-4xl">${card.emoji}</div>
+                `;
+                cardDiv.dataset.cardId = card.id;
+                cardDiv.dataset.index = index;
+                cardDiv.onclick = () => flipCard(cardDiv);
+                grid.appendChild(cardDiv);
+            });
+        }
+
+        let flippedCards = [];
+        let canFlip = true;
+
+        function flipCard(card) {
+            if (!canFlip || card.classList.contains('flipped') || flippedCards.length >= 2) return;
+
+            card.classList.add('flipped');
+            card.querySelector('.card-front').classList.add('hidden');
+            card.querySelector('.card-back').classList.remove('hidden');
+            flippedCards.push(card);
+
+            if (flippedCards.length === 2) {
+                memoryMoves++;
+                document.getElementById('memoryMoves').textContent = memoryMoves;
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            canFlip = false;
+            const [card1, card2] = flippedCards;
+            
+            if (card1.dataset.cardId === card2.dataset.cardId) {
+                setTimeout(() => {
+                    card1.classList.add('matched');
+                    card2.classList.add('matched');
+                    memoryPairs++;
+                    document.getElementById('memoryPairs').textContent = memoryPairs;
+                    
+                    if (memoryPairs === memoryCards.length) {
+                        showMemoryResult();
+                    }
+                    
+                    flippedCards = [];
+                    canFlip = true;
+                }, 500);
+            } else {
+                setTimeout(() => {
+                    card1.classList.remove('flipped');
+                    card2.classList.remove('flipped');
+                    card1.querySelector('.card-front').classList.remove('hidden');
+                    card1.querySelector('.card-back').classList.add('hidden');
+                    card2.querySelector('.card-front').classList.remove('hidden');
+                    card2.querySelector('.card-back').classList.add('hidden');
+                    flippedCards = [];
+                    canFlip = true;
+                }, 1000);
+            }
+        }
+
+        function showMemoryResult() {
+            document.getElementById('memoryResult').classList.remove('hidden');
+            document.getElementById('finalMoves').textContent = memoryMoves;
+        }
+
+        function restartMemoryGame() {
+            startMemoryGame();
+        }
+
+        // Plate Game Functions
+        function startPlateGame() {
+            document.getElementById('plateModal').classList.remove('hidden');
+            plateScore = 0;
+            document.getElementById('plateScore').textContent = plateScore;
+            document.getElementById('plateResult').classList.add('hidden');
+            createFoodItems();
+        }
+
+        function closePlateGame() {
+            document.getElementById('plateModal').classList.add('hidden');
+        }
+
+        function createFoodItems() {
+            const container = document.getElementById('foodItems');
+            container.innerHTML = '';
+            
+            const shuffledFoods = [...foodItems].sort(() => Math.random() - 0.5);
+
+            shuffledFoods.forEach(food => {
+                const foodDiv = document.createElement('div');
+                foodDiv.className = 'bg-white border-2 border-gray-200 rounded-2xl p-4 text-center cursor-pointer hover:border-gray-300 transition-all';
+                foodDiv.innerHTML = `
+                    <div class="text-4xl mb-2">${food.emoji}</div>
+                    <p class="text-sm font-semibold text-gray-700">${food.name}</p>
+                `;
+                foodDiv.draggable = true;
+                foodDiv.dataset.category = food.category;
+                foodDiv.dataset.name = food.name;
+                
+                foodDiv.addEventListener('dragstart', (e) => {
+                    e.dataTransfer.setData('text/plain', JSON.stringify({
+                        category: food.category,
+                        name: food.name,
+                        emoji: food.emoji
+                    }));
+                });
+                
+                container.appendChild(foodDiv);
+            });
+
+            setupDropZones();
+        }
+
+        function setupDropZones() {
+            const sections = ['fruitsSection', 'vegetablesSection', 'proteinsSection', 'carbsSection'];
+            
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                
+                section.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    section.style.borderColor = '#3B82F6';
+                    section.style.backgroundColor = '#DBEAFE';
+                });
+                
+                section.addEventListener('dragleave', (e) => {
+                    section.style.borderColor = '';
+                    section.style.backgroundColor = '';
+                });
+                
+                section.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    section.style.borderColor = '';
+                    section.style.backgroundColor = '';
+                    
+                    const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+                    const sectionCategory = sectionId.replace('Section', '');
+                    
+                    if (data.category === sectionCategory) {
+                        plateScore++;
+                        document.getElementById('plateScore').textContent = plateScore;
+                        
+                        // Add food to section
+                        const foodDiv = document.createElement('div');
+                        foodDiv.className = 'inline-block m-1 p-2 bg-white rounded-lg shadow-sm';
+                        foodDiv.innerHTML = `<span class="text-2xl">${data.emoji}</span>`;
+                        section.appendChild(foodDiv);
+                        
+                        // Remove from original container
+                        const originalItems = document.getElementById('foodItems').children;
+                        for (let item of originalItems) {
+                            if (item.dataset.name === data.name) {
+                                item.remove();
+                                break;
+                            }
+                        }
+                        
+                        if (plateScore === foodItems.length) {
+                            setTimeout(showPlateResult, 500);
+                        }
+                    }
+                });
+            });
+        }
+
+        function showPlateResult() {
+            document.getElementById('plateResult').classList.remove('hidden');
+            document.getElementById('finalPlateScore').textContent = plateScore;
+        }
+
+        function restartPlateGame() {
+            startPlateGame();
+        }
+    </script>
+<script>
+    document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+            e.preventDefault();
+            window.parent.postMessage('go-next', '*');
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            window.parent.postMessage('go-prev', '*');
+        }
+    });
+</script>
+</body>
+</html>
