@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club de Santé - École Primaire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.birds.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Fredoka', sans-serif; }
+        .vanta-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .health-gradient { background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 50%, #ffd3b6 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-10px) rotateY(5deg); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .floating { animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        .pulse-glow { animation: pulse-glow 2s ease-in-out infinite alternate; }
+        @keyframes pulse-glow { from { box-shadow: 0 0 20px rgba(168, 230, 207, 0.5); } to { box-shadow: 0 0 40px rgba(168, 230, 207, 0.8); } }
+    </style>
+</head>
+<body class="health-gradient min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-sm shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-heart text-white text-xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-800">Club de Santé</h1>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-green-600 font-semibold hover:text-green-800 transition-colors">Accueil</a>
+                    <a href="programme.html" class="text-gray-700 hover:text-green-600 transition-colors">Programme</a>
+                    <a href="jeux.html" class="text-gray-700 hover:text-green-600 transition-colors">Jeux</a>
+                    <a href="ressources.html" class="text-gray-700 hover:text-green-600 transition-colors">Ressources</a>
+                </div>
+                <button class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div id="vanta-bg" class="vanta-canvas"></div>
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <div class="floating mb-8">
+                <div class="w-32 h-32 bg-gradient-to-br from-pink-400 to-yellow-400 rounded-full mx-auto flex items-center justify-center shadow-2xl">
+                    <i class="fas fa-leaf text-white text-6xl"></i>
+                </div>
+            </div>
+            <h1 class="text-6xl md:text-8xl font-bold text-white mb-6 drop-shadow-2xl">
+                Bienvenue au
+                <span class="bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent">
+                    Club de Santé
+                </span>
+            </h1>
+            <p class="text-xl md:text-2xl text-white mb-8 drop-shadow-lg">
+                Apprenons ensemble à être forts, heureux et en bonne santé !
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="programme.html" class="bg-white text-green-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-green-50 transition-all transform hover:scale-105 pulse-glow">
+                    <i class="fas fa-calendar-alt mr-2"></i>
+                    Voir le Programme
+                </a>
+                <a href="jeux.html" class="bg-gradient-to-r from-pink-500 to-yellow-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:from-pink-600 hover:to-yellow-600 transition-all transform hover:scale-105">
+                    <i class="fas fa-gamepad mr-2"></i>
+                    Jouer Maintenant
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 px-4">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-800 mb-6">Pourquoi rejoindre notre club ?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Notre club de santé offre une expérience éducative amusante pour apprendre les bases d'une vie saine et équilibrée.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl">
+                    <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-apple-alt text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Saine Alimentation</h3>
+                    <p class="text-gray-600 text-center">
+                        Apprends à manger équilibré avec nos ateliers cuisine et nos défis nutritifs colorés !
+                    </p>
+                </div>
+
+                <div class="card-hover bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl">
+                    <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-running text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Activité Physique</h3>
+                    <p class="text-gray-600 text-center">
+                        Bouge, danse et joue avec nous ! Le sport c'est la santé et c'est super amusant !
+                    </p>
+                </div>
+
+                <div class="card-hover bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl">
+                    <div class="w-20 h-20 bg-gradient-to-br from-pink-400 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-brain text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Santé Mentale</h3>
+                    <p class="text-gray-600 text-center">
+                        Découvre comment prendre soin de ton esprit et de tes émotions avec des activités relaxantes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Preview -->
+    <section class="py-20 px-4 bg-white/50">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-800 mb-6">Nos Activités du Mois</h2>
+                <p class="text-xl text-gray-600">Découvre ce qui t'attend cette semaine !</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-seedling text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Jardinage</h3>
+                    <p class="text-gray-600 text-sm">Plante et cultive tes propres légumes !</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-palette text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Art Thérapie</h3>
+                    <p class="text-gray-600 text-sm">Exprime ta créativité pour te sentir bien !</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-teal-500 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-dumbbell text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Yoga Kids</h3>
+                    <p class="text-gray-600 text-sm">Des postures rigolotes pour se détendre !</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-microscope text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Science Fun</h3>
+                    <p class="text-gray-600 text-sm">Des expériences étonnantes sur le corps !</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 px-4">
+        <div class="container mx-auto text-center">
+            <div class="bg-gradient-to-r from-green-400 to-blue-500 rounded-3xl p-12 text-white max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold mb-6">Prêt à devenir un champion de la santé ?</h2>
+                <p class="text-xl mb-8">Rejoins-nous dès maintenant et commence ton aventure vers une vie plus saine et plus heureuse !</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="programme.html" class="bg-white text-green-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105">
+                        <i class="fas fa-calendar-check mr-2"></i>
+                        Voir le Planning
+                    </a>
+                    <a href="ressources.html" class="bg-yellow-400 text-gray-800 px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-500 transition-all transform hover:scale-105">
+                        <i class="fas fa-book-open mr-2"></i>
+                        Ressources Parents
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 px-4">
+        <div class="container mx-auto text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+                    <i class="fas fa-heart text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold">Club de Santé - École Primaire</h3>
+            </div>
+            <p class="text-gray-400 mb-4">© 2024 Club de Santé. Tous droits réservés.</p>
+            <p class="text-gray-400 text-sm">Créé avec ❤️ pour la santé et le bien-être des enfants</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Vanta.js background
+        VANTA.BIRDS({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            backgroundColor: 0x8bc34a,
+            color1: 0x4caf50,
+            color2: 0x2196f3,
+            colorMode: "lerpGradient",
+            birdSize: 1.20,
+            wingSpan: 25.00,
+            speedLimit: 3.00,
+            separation: 20.00,
+            alignment: 20.00,
+            cohesion: 20.00,
+            quantity: 3.00
+        });
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+<script>
+    document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+            e.preventDefault();
+            window.parent.postMessage('go-next', '*');
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            window.parent.postMessage('go-prev', '*');
+        }
+    });
+</script>
+</body>
+</html>
